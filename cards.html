@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueBank Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header .user {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user p {
+            margin: 0 10px 0 0;
+        }
+
+        .header .user button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .header .user button:hover {
+            background-color: #0056b3;
+        }
+
+        .sidebar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .welcome {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card.gray {
+            background-color: #ccc;
+            color: #000;
+        }
+
+        .card-info {
+            flex-grow: 1;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-buttons button {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card-buttons .configure {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .card-buttons .configure:hover {
+            background-color: #0056b3;
+        }
+
+        .card-buttons .block {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
+
+        .card-buttons .block:hover {
+            background-color: #cc0000;
+        }
+
+        .extract {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            width: 200px;
+        }
+
+        .extract h3 {
+            margin-top: 0;
+        }
+
+        .extract p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BlueBank</h1>
+        <div class="user">
+            <p>Olá, Neilton Seguins</p>
+            <button>Sair</button>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <a href="dashboard.html">Início</a>
+        <a href="cards.html">Cartões</a>
+        <a href="services.html">Serviços</a>
+        <a href="investments.html">Investimentos</a>
+    </div>
+
+    <div class="main">
+        <div class="welcome">
+            <h2>Bem vindo de volta!</h2>
+            <h3>Saldo</h3>
+            <h1>R$ 3750</h1>
+        </div>
+
+        <div class="cards">
+            <h2>Meus Cartões</h2>
+
+            <div class="card">
+                <div class="card-info">
+                    <h3>Byte</h3>
+                    <p>Platinum</p>
+                    <p>João Teodozo</p>
+                    <p>••••••••••••••••</p>
+                </div>
+                <div class="card-buttons">
+                    <button class="configure">Configurar</button>
+                    <button class="block">Bloquear</button>
+                </div>
+                <p>Função: Débito/Crédito</p>
+            </div>
+
+            <div class="card gray">
+                <div class="card-info">
+                    <h3>Byte</h3>
+                    <p>Platinum</p>
+                    <p>João Santos</p>
+                    <p>••••••••••••••••</p>
+                </div>
+                <div class="card-buttons">
+                    <button class="configure">Configurar</button>
+                    <button class="block">Bloquear</button>
+                </div>
+                <p>Função: Débito</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="extract">
+        <h3>Extrato</h3>
+        <p>Depósito - R$ 150</p>
+        <p>Depósito - R$ 100</p>
+        <p>Depósito - R$ 500</p>
+        <p>Transferência - R$ 1500</p>
+        <p>Transferência - R$ 250</p>
+    </div> -->
+</body>
+</html>

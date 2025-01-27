@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueBank Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header .user {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user p {
+            margin: 0 10px 0 0;
+        }
+
+        .header .user button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .header .user button:hover {
+            background-color: #0056b3;
+        }
+        .sidebar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .welcome {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .transaction {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction select, .transaction input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .transaction button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .transaction button:hover {
+            background-color: #0056b3;
+        }
+
+        .extract {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            width: 200px;
+        }
+
+        .extract h3 {
+            margin-top: 0;
+        }
+
+        .extract p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BlueBank</h1>
+        <div class="user">
+            <p>Olá, João Teodozo</p>
+            <button>Sair</button>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <a href="dashboard.html">Início</a>
+        <a href="cards.html">Cartões</a>
+        <a href="services.html">Serviços</a>
+        <a href="investments.html">Investimentos</a>
+    </div>
+
+    <div class="main">
+        <div class="welcome">
+            <h2>Bem vindo de volta!</h2>
+            <h3>Saldo em conta</h3>
+            <h1>R$ 3750</h1>
+        </div>
+
+        <div class="transaction">
+            <h2>Nova Transação</h2>
+            <label for="transactionType">Selecione um tipo de transação</label>
+            <select id="transactionType">
+                <option value="">Selecione</option>
+                <option value="deposit">Depósito</option>
+                <option value="transfer">Transferência</option>
+            </select>
+            <label for="amount">Valor</label>
+            <input type="number" id="amount" placeholder="Digite um valor">
+            <button>Realizar transação</button>
+        </div>
+    </div>
+
+    <!-- <div class="extract">
+        <h3>Extrato</h3>
+        <p>Depósito - R$ 150</p>
+        <p>Depósito - R$ 100</p>
+        <p>Depósito - R$ 500</p>
+        <p>Transferência - R$ 1500</p>
+        <p>Transferência - R$ 250</p>
+    </div> -->
+</body>
+</html>
