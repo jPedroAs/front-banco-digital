@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BlueBank</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">BlueBank</h1>
+        <div class="user-info">
+            <span>Olá, <span id="userName">João Teodozo</span></span>
+            <button class="btn-secondary" id="logoutButton">Sair</button>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" id="dashboardLink">Início</a></li>
+                <li><a href="#" id="cardsLink">Cartões</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Investimentos</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <!-- Tela de Início -->
+            <section class="welcome" id="dashboardScreen">
+                <h2>Bem vindo de volta!</h2>
+                <p id="currentDate">Terça-feira, 24/01/2023</p>
+                <p>Saldo em conta</p>
+                <h3 id="accountBalance">R$ 3750</h3>
+            </section>
+
+            <section class="transaction" id="dashboardScreen">
+                <h2>Nova Transação</h2>
+                <form id="transactionForm">
+                    <label for="transactionType">Selecione um tipo de transação</label>
+                    <select id="transactionType" required>
+                        <option value="" disabled selected>Escolha uma opção</option>
+                        <option value="deposit">Depósito</option>
+                        <option value="transfer">Transferência</option>
+                    </select>
+                    
+                    <label for="transactionValue">Valor</label>
+                    <input type="number" id="transactionValue" placeholder="Digite um valor" required>
+                    
+                    <button type="submit" class="btn-primary">Realizar transação</button>
+                </form>
+            </section>
+
+            <!-- Tela de Cartões -->
+            <section class="cards" id="cardsScreen" style="display: none;">
+                <h2>Meus Cartões</h2>
+                <div class="card">
+                    <div class="card-info blue-card">
+                        <p>Byte</p>
+                        <p>Platinum</p>
+                        <p>João Teodozo</p>
+                        <p>************</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-primary">Configurar</button>
+                        <button class="btn-danger">Bloquear</button>
+                        <p>Função: Débito/Crédito</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-info gray-card">
+                        <p>Byte</p>
+                        <p>Platinum</p>
+                        <p>João Santos</p>
+                        <p>************</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-primary">Configurar</button>
+                        <button class="btn-danger">Bloquear</button>
+                        <p>Função: Débito</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar-right">
+            <h3>Extrato</h3>
+            <ul id="transactionHistory">
+                <li>Depósito - R$ 150</li>
+                <li>Depósito - R$ 100</li>
+                <li>Depósito - R$ 500</li>
+                <li>Transferência - R$ 1500</li>
+                <li>Transferência - R$ 250</li>
+            </ul>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

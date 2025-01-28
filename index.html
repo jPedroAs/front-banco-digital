@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueBank</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1 class="logo">BlueBank</h1>
+            <div class="buttons">
+                <button class="btn-primary" id="openRegisterModal">Abra sua conta</button>
+                <button class="btn-secondary" id="openLoginModal">Acesse sua conta</button>
+            </div>
+        </header>
+
+        <section class="banner">
+            <h2>Controle suas finanças com eficiência. Abra sua conta agora e transforme seu futuro financeiro!</h2>
+        </section>
+
+        <main class="main-content">
+            <section class="features">
+                <div class="feature">
+                    <div class="icon">+</div>
+                    <h3>Conta digital sem taxas</h3>
+                    <p>Gestão simplificada, sem tarifas escondidas. Ideal para quem busca facilidade e transparência.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">🔗</div>
+                    <h3>Transferências ilimitadas</h3>
+                    <p>Envie dinheiro para qualquer banco sem custos adicionais. Prático e rápido.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">📊</div>
+                    <h3>Investimentos automáticos</h3>
+                    <p>Faça seu dinheiro trabalhar para você com nossas opções de investimento automatizadas.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">🛟</div>
+                    <h3>Suporte 24/7</h3>
+                    <p>Nosso time de suporte está disponível a qualquer hora, todos os dias da semana.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>Desenvolvido por João Teodozo</p>
+    </footer>
+
+    <!-- Modal para registro -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeRegisterModal">&times;</span>
+            <h3>Preencha os campos abaixo para criar sua conta corrente!</h3>
+            <form>
+                <label for="name">Nome</label>
+                <input type="text" id="name" placeholder="Digite seu nome completo">
+                
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Digite seu email">
+                
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite sua senha">
+                
+                <label>
+                    <input type="checkbox">
+                    Li e estou ciente quanto às condições de tratamento dos meus dados conforme descrito na Política de Privacidade do banco.
+                </label>
+                
+                <button type="submit" class="btn-primary">Criar conta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para login -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeLoginModal">&times;</span>
+            <h3>Login</h3>
+            <form>
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" placeholder="Digite seu email">
+                
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" placeholder="Digite sua senha">
+                
+                <button type="submit" class="btn-primary">Acessar</button>
+                <a href="#" class="forgot-password">Esqueci minha senha!</a>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

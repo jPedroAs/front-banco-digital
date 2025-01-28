@@ -1,0 +1,197 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    height: 100%;
+    background: #f4f4f4;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Dashboard Layout */
+.dashboard {
+    display: flex;
+    height: calc(100vh - 60px); /* Altura da tela menos o cabeçalho */
+}
+
+.sidebar {
+    background: #007bff;
+    color: #fff;
+    width: 200px;
+    padding: 20px 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-right {
+    background: #007bff;
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-right h3 {
+    margin-bottom: 10px;
+}
+
+.sidebar-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-right ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Conteúdo Principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+}
+
+.welcome, .transaction {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.welcome h2 {
+    margin-bottom: 10px;
+}
+
+.welcome h3 {
+    color: #007bff;
+    font-size: 24px;
+}
+
+.transaction form {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction form label {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.transaction form input,
+.transaction form select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.transaction form button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Botões para cartões */
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-info {
+    flex: 1;
+    padding: 15px;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.blue-card {
+    background-color: #007bff;
+}
+
+.gray-card {
+    background-color: #6c757d;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-actions button {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-danger {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #e60000;
+}
