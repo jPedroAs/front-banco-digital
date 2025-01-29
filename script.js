@@ -80,3 +80,79 @@ cardsLink.addEventListener("click", (e) => {
     cardsScreen.style.display = "block";
     console.log("Exibindo tela de cartões");
 });
+
+//integração com backend
+const API_BASE_URL = "http://localhost:5000/api";
+
+// Função de login
+async function login(email, senha) {
+    const response = await fetch(`${API_BASE_URL}/autenticacao/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha }),
+    });
+    if (response.ok) {
+        const data = await response.json();
+        console.log("Login bem-sucedido:", data);
+        return data; // Retorna o token e nome do usuário
+    } else {
+        const error = await response.json();
+        console.error("Erro no login:", error.Mensagem);
+    }
+}
+
+// Função para buscar dados do dashboard
+async function carregarDashboard() {
+    const response = await fetch(`${API_BASE_URL}/dashboard/dados`);
+    if (response.ok) {
+        const data = await response.json();
+        console.log("Dados do Dashboard:", data);
+
+        document.getElementById("userName").textContent = data.Nome;
+        document.getElementById("accountBalance").textContent = `R$ ${data.Saldo}`;
+        document.getElementById("currentDate").textContent = data.DataAtual;
+
+        // Renderizar transações
+        const transactionHistory = document.getElementById("transactionHistory");
+        transactionHistory.innerHTML = "";
+        data.Transacoes.forEach((transacao) => {
+            const li = document.createElement("li");
+            li.textContent = `${transacao.Tipo} - R$ ${transacao.Valor}`;
+            transactionHistory.appendChild(li);
+        });
+    }
+}
+
+// Função para carregar cartões
+async function carregarCartoes() {
+    const response = await fetch(`${API_BASE_URL}/cartoes`);
+    if (response.ok) {
+        const data = await response.json();
+        console.log("Cartões:", data);
+
+        const cardsScreen = document.getElementById("cardsScreen");
+        cardsScreen.innerHTML = ""; // Limpar a tela antes de renderizar
+        data.forEach((cartao) => {
+            const cardDiv = document.createElement("div");
+            cardDiv.classList.add("card");
+
+            cardDiv.innerHTML = `
+                <div class="card-info ${cartao.Funcao === "Débito" ? "gray-card" : "blue-card"}">
+                    <p>${cartao.Banco}</p>
+                    <p>${cartao.Categoria}</p>
+                    <p>${cartao.Nome}</p>
+                    <p>${cartao.Numero}</p>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-primary">Configurar</button>
+                    <button class="btn-danger">Bloquear</button>
+                    <p>Função: ${cartao.Funcao}</p>
+                </div>
+            `;
+            cardsScreen.appendChild(cardDiv);
+        });
+    }
+}
+
+// Exemplo de chamada ao carregar a página
+carregarDashboard();

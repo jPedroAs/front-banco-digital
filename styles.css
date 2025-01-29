@@ -71,7 +71,7 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 228px;
+    padding: 216.5px;
 }
 
 .features {
@@ -164,4 +164,8 @@ body, html {
 
 .forgot-password:hover {
     text-decoration: underline;
+}
+
+.icon {
+    font-size: 30px;
 }
