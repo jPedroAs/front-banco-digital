@@ -190,10 +190,12 @@ body, html {
 }
 
 .btn-danger {
-    background-color: #ff4d4d;
+    background-color: #e60000;
     color: white;
+    width: 100px;
 }
 
-.btn-danger:hover {
-    background-color: #e60000;
+.btn-primary {
+    background-color: green;
+    color: white;
 }
