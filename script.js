@@ -1,36 +1,13 @@
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "http://localhost:5269/api";
 
-// Função para registrar um usuário
-async function registerUser(username, email, password) {
-    const response = await fetch(`${API_BASE_URL}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password }),
-    });
 
-    if (response.ok) {
-        alert("Usuário cadastrado com sucesso!");
-        registerModal.style.display = "none"; // Fecha o modal
-    } else {
-        alert("Erro ao cadastrar. Tente novamente.");
-    }
-}
-
-// Função para login
-async function loginUser(username, password) {
-    const response = await fetch(`${API_BASE_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.Token); // Salvar token no LocalStorage
-        alert("Login bem-sucedido!");
-        window.location.href = "home.html"; // Redirecionar para dashboard
-    } else {
-        alert("Usuário ou senha inválidos!");
+// Função para decodificar JWT
+function parseJwt(token) {
+    try {
+        return JSON.parse(atob(token.split(".")[1])); // Decodifica a payload do JWT
+    } catch (error) {
+        console.error("Erro ao decodificar JWT:", error);
+        return null;
     }
 }
 
@@ -50,19 +27,45 @@ async function loadDashboardData() {
 
     if (response.ok) {
         const transactions = await response.json();
-        document.getElementById("accountBalance").textContent = `R$ ${transactions[0]?.balance || 0}`;
 
         // Atualizando histórico de transações
         const transactionHistory = document.getElementById("transactionHistory");
         transactionHistory.innerHTML = ""; // Limpar lista antes de adicionar novos itens
         transactions.forEach((transacao) => {
             const li = document.createElement("li");
-            li.textContent = `${transacao.type} - R$ ${transacao.amount}`;
+            li.textContent = `${transacao.type == 1 ? "Depósito" : transacao.type == 0 ? "Cash Out" : transacao.type == 3 ? "Transação" : transacao.type == 2 ? "Poupança" : "" } - R$ ${transacao.amount}`;
             transactionHistory.appendChild(li);
         });
     } else {
         alert("Erro ao carregar dados!");
     }
+}
+
+async function balanceAccount(){
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("Você precisa estar logado!");
+        window.location.href = "index.html";
+        return;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/balance`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (response.ok) {
+        const transactions = await response.json();
+        document.getElementById("Balance").textContent = `R$ ${transactions || 0}`;
+    }
+}
+
+// Função para exibir nome do usuário na home
+function showUserName() {
+    const token = localStorage.getItem("token");
+    const userName = parseJwt(token)
+    document.getElementById("Name").textContent = `Olá, ${userName.Name}`;
+    document.getElementById("userName").textContent = `${userName.Name}`;
 }
 
 // Função para depósito
@@ -72,12 +75,14 @@ async function deposit(amount, accountNumber) {
     const response = await fetch(`${API_BASE_URL}/deposito`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ amount, cod: accountNumber }),
+        body: JSON.stringify({ amount, cod: accountNumber, Type: 1 }),
     });
 
     if (response.ok) {
         alert("Depósito realizado com sucesso!");
-        loadDashboardData(); // Atualiza os dados do saldo
+        document.getElementById("transactionType").value  = ""
+        document.getElementById("transactionValue").value = ""
+        loadDashboardData();
     } else {
         alert("Erro ao realizar depósito!");
     }
@@ -90,7 +95,7 @@ async function transfer(amount, targetAccount) {
     const response = await fetch(`${API_BASE_URL}/transferencia`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ amount, cod: targetAccount, type: "Transaction" }),
+        body: JSON.stringify({ amount, cod: targetAccount, type: 3 }),
     });
 
     if (response.ok) {
@@ -101,29 +106,14 @@ async function transfer(amount, targetAccount) {
     }
 }
 
-// Evento de envio do formulário de registro
-document.querySelector("#registerModal form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const username = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    registerUser(username, email, password);
-});
-
-// Evento de envio do formulário de login
-document.querySelector("#loginModal form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const username = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    loginUser(username, password);
-});
-
 // Evento para depósito e transferência
 document.getElementById("transactionForm").addEventListener("submit", function (event) {
     event.preventDefault();
     const transactionType = document.getElementById("transactionType").value;
     const amount = parseFloat(document.getElementById("transactionValue").value);
-    const accountNumber = "123456"; // Você pode definir dinamicamente pelo usuário logado
+    const token = localStorage.getItem("token");
+    const tokenData = parseJwt(token);
+    const accountNumber = tokenData.Account; // Você pode definir dinamicamente pelo usuário logado
 
     if (transactionType === "deposit") {
         deposit(amount, accountNumber);
@@ -136,11 +126,14 @@ document.getElementById("transactionForm").addEventListener("submit", function (
 // Evento de logout
 document.getElementById("logoutButton").addEventListener("click", function () {
     localStorage.removeItem("token");
+    localStorage.removeItem("userName");
     alert("Logout realizado!");
     window.location.href = "index.html";
 });
 
 // Carrega os dados ao entrar na home
 if (window.location.pathname.includes("home.html")) {
+    showUserName();
     loadDashboardData();
+    balanceAccount();
 }

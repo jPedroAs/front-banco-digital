@@ -93,6 +93,37 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="index.js"></script>
+
+    <script>
+        openRegisterModal.addEventListener('click', () => {
+            registerModal.style.display = 'flex';
+        });
+        
+        // Fechar modal de registro
+        closeRegisterModal.addEventListener('click', () => {
+            registerModal.style.display = 'none';
+        });
+        
+        // Abrir modal de login
+        openLoginModal.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+        
+        // Fechar modal de login
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+        
+        // Fechar modal ao clicar fora do conteúdo
+        window.addEventListener('click', (event) => {
+            if (event.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+      </script>
 </body>
 </html>
