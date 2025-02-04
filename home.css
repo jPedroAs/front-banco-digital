@@ -146,6 +146,7 @@ body, html {
 
 /* Botões para cartões */
 .card {
+    width: 430px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -176,6 +177,7 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 30px;
 }
 
 .card-actions button {
