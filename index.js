@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5269/api";
+const API_BASE_URL = "https://api-gateway-pay.onrender.com/api";
 
 // Função para registrar um usuário
 async function registerUser(username, email, password) {
