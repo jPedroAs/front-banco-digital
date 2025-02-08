@@ -137,3 +137,26 @@ if (window.location.pathname.includes("home.html")) {
     loadDashboardData();
     balanceAccount();
 }
+
+
+// Função para mostrar a tela de Início
+function showDashboard() {
+    // Esconde a tela de cartões
+    document.getElementById("cardsScreen").style.display = "none";
+    
+    // Mostra a tela de início
+    document.getElementById("dashboardScreen").style.display = "block";
+}
+
+// Função para mostrar a tela de Cartões
+function showCards() {
+    // Esconde a tela de início
+    document.getElementById("dashboardScreen").style.display = "none";
+    
+    // Mostra a tela de cartões
+    document.getElementById("cardsScreen").style.display = "block";
+}
+
+// Inicializa a tela de Início ao carregar a página
+window.onload = showDashboard;
+
