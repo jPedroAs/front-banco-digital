@@ -83,6 +83,7 @@ async function deposit(amount, accountNumber) {
         document.getElementById("transactionType").value  = ""
         document.getElementById("transactionValue").value = ""
         loadDashboardData();
+        balanceAccount();
     } else {
         alert("Erro ao realizar depósito!");
     }
@@ -101,6 +102,7 @@ async function transfer(amount, targetAccount) {
     if (response.ok) {
         alert("Transferência realizada com sucesso!");
         loadDashboardData();
+        balanceAccount();
     } else {
         alert("Erro ao realizar transferência!");
     }
